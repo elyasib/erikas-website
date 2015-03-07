@@ -1,0 +1,63 @@
+@(title: String)(students: List[Student])(menu: Html)(titleBox: Html)(content: Html)(implicit lang: Lang)
+@import play.api.Play.current 
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+        <title>@title</title>
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/erikasc.ico")">
+    </head>
+    <body>
+	<div id="pageWrapper" class="pageWrapper">
+		<div class="sideBarWrapper" id="sideBarWrapper">
+			@login()
+			@signin()
+		</div>
+		<div id="contentWrapper" class="contentWrapper">
+			<div id="menuBar" class="menuBar" role="navigation">
+				<div class="container-fluid">
+    					<div class="navbar-header">
+    						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collMenuBar">
+							Menu
+    					 	</button>
+    					</div>
+					<div class="collapse navbar-collapse" id="collMenuBar"> 
+						<ul class="nav navbar-nav navbar-left">
+							@menu
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="screenBlock">
+				<div class="frontBox">
+					<div class="titleBox">
+						@titleBox
+					</div>
+					<div class="arrowBox">
+						<div class="arrowDown"><a href="#page2"><span class="icon-arrowDown"></span></a></div>
+					</div>
+				</div>
+			</div>
+				@content
+		</div>
+	</div>
+        <script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
+        <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/main.js")"></script>
+
+	<script>
+		toggleSideBar("#logInBtn","#logIn","#signIn");
+		toggleSideBar("#signInBtn","#signIn","#logIn");
+		closeSideBar("#sidebarClose","#signIn","#logIn");
+		scrollToAnch();
+		scrollColor("#menuBar","toggleColorTop","toggleColorNop");
+		formBehavior();
+		collapseMenuBar("#menuBar","#collMenuBar");
+	</script>
+    </body>
+</html>
+

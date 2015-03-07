@@ -1,0 +1,182 @@
+//
+
+@import "stylesheets/menuBar.less";
+
+.pushRightTop {
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+.pageWrapper {
+	padding-left: 0px;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	
+	&.toggled {
+		@media (max-width: @screen-xs-max) {
+			padding-left: 250px;
+		}
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			padding-left: 250px;
+		}
+		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+			padding-left: 250px;
+		}
+		@media (min-width: @screen-lg-min) {
+			padding-left: 250px;
+		}
+		.sideBarWrapper {
+			@media (max-width: @screen-xs-max) {
+				width: 250px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				width: 250px;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+				width: 250px;
+			}
+			@media (min-width: @screen-lg-min) {
+				width: 250px;
+			}
+		}
+		.contentWrapper {
+			@media (max-width: @screen-xs-max) {
+				position: absolute;
+				margin-right: -250px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				position: absolute;
+				margin-right: -250px;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+				position: absolute;
+				margin-right: -250px;
+			}
+			@media (min-width: @screen-lg-min) {
+				position: absolute;
+				margin-right: -250px;
+			}
+		}
+		.menuBar {
+			@media (max-width: @screen-xs-max) {
+				margin-left: 250px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin-left: 250px;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+				margin-left: 250px;
+			}
+			@media (min-width: @screen-lg-min) {
+				margin-left: 250px;
+			}
+		}
+	}
+}
+
+.sideBarWrapper { 
+	z-index: 2000;
+	position: fixed;
+	width: 0;
+	height: 100%;
+	overflow-y: auto;
+	background: #000;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	@media (max-width: @screen-xs-max) {
+		left: 250px;
+		margin-left: -250px;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		left: 250px;
+		margin-left: -250px;
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		left: 250px;
+		margin-left: -250px;
+	}
+	@media (min-width: @screen-lg-min) {
+		left: 250px;
+		margin-left: -250px;
+	}
+}
+
+.contentWrapper {
+	z-index: 1000;
+	width: 100%;
+	//width: 100vh;
+	//padding: 15px;
+}
+
+.sidebarNav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebarNav { 
+	li { 
+		.exoFont();
+		padding-top: 10px;
+		.sideBarTitle {
+			color: white;
+		}
+
+		a {
+			display: block;
+    			text-decoration: none;
+    			color: #999999;
+			&:hover {
+				text-decoration: none;
+				color: #fff;
+				background: rgba(255,255,255,0.2);
+			}
+			&:acive,&:focus {
+				text-decoration: none;
+			}
+		}
+		text-indent: 20px;
+		line-height: 40px;
+		.input-group {
+			.text-left();
+			text-align: left;
+			margin-left: 20px;
+			width: 210px;
+			border: 1px solid @input-group-addon-border-color;
+			border-radius: @border-radius-base;
+		}
+	}
+	button {
+		margin-right: 20px;	
+	}
+}
+
+.form-group {
+	width: 210px;
+	margin-left: 20px;
+}
+
+.sidebarNav > .sidebarClose {
+	height: 65px;
+	font-size: 25px;
+	line-height: 60px;
+	.text-right();
+	padding-right: 20px;
+}
+
+.sidebarNav > .sidebarClose a {
+	color: #999999;
+}
+
+.sidebarNav > .sidebarClose a:hover {
+	color: #fff;
+	background: none;
+}
+

@@ -1,0 +1,102 @@
+@import "lib/bootstrap/less/bootstrap.less";
+@import "stylesheets/fonts.less";
+@import "stylesheets/glyphiconStyle.less";
+@import "stylesheets/sideBar.less";
+//@import "stylesheets/menuBar.less";
+
+/*#vertical-five-colors(@color1; @color2; @color3; @color4; @color5; @color-stop1; @color-stop2; @color-stop3; @color-stop4; @color-stop5) {
+    background-image: -webkit-linear-gradient(top, @color1 @color-stop1, @color2 @color-stop2, @color3 @color-stop3, @color4 @color-stop4, @color5 @color-stop5);
+    background-image: -o-linear-gradient(top, @color1 @color-stop1, @color2 @color-stop2, @color3 @color-stop3, @color4 @color-stop4, @color5 @color-stop5);
+    background-image: linear-gradient(to bottom, @color1 @color-stop1, @color2 @color-stop2, @color3 @color-stop3, @color4 @color-stop4, @color5 @color-stop5); 
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@color1),argb(@color2))); // IE9 and down, gets no color-stop at all for proper fallback
+  }*/
+
+.screenBlock {
+	position-top: 0%;
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	#gradient > .directional(#360033;#0b8793;45deg);
+        padding-left: 0px;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+}
+
+.screenBlockw {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+        padding-left: 0px;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+}
+
+.frontBox {
+	.container-fluid();
+	.titleBox {
+		.make-row();
+		padding-top: 40vh;
+	
+		.title {
+			.make-md-column(12);
+			.text-center();
+			.exoFont();
+			.exper { color: white;}
+			.tic { color: #ffa526; .unibodyFont(); }
+		}
+	
+		h1 {
+			@media (max-width: @screen-xs-max) { 
+				font-size: 60px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+				font-size: 80px;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+				font-size: 90px;
+			}
+			@media (min-width: @screen-lg-min) { 
+				font-size: 110px;
+			}
+		}
+	}
+	
+	.arrowBox {
+		.make-row();
+		padding-top: 30vh; 
+		.arrowDown {
+			.make-md-column(12);
+			.text-center();
+			
+			
+			@media (max-width: @screen-xs-max) { 
+				font-size: 35px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+				font-size: 45px;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+				font-size: 50px;
+			}
+			@media (min-width: @screen-lg-min) { 
+				font-size: 60px;
+			}
+			a {
+				color: white;
+				text-shadow: 5px 5px 9px #000;
+				&:hover,&:focus {
+					color: white;
+					text-decoration: none;
+					text-shadow: 2px 2px 5px #000;
+				}
+			}
+		}
+	}
+			//margin-top : 50vh;
+			//margin-bottom : 50vh;
+}
