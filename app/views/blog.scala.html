@@ -1,25 +1,23 @@
 @(students: List[Student])
-@s = @{List("1","2","3","4")}
-@*
-@{
-	//Top Menu Items
-	val menu = Html(
+
+	@*Top Menu Items*@
+	@menu = @{Html(
 		"""<li><a href="./" id="homeBtn"> Home </a></li>
 		<li><a href="#page2" id="aboutBtn"> Acerca de </a></li>
 		<li><a href=" " id="signInBtn" > Registrarse </a></li>
 		<li><a href=" " id="logInBtn" > Ingresar </a></li>
 		<li><a href="./blog" id="blogBtn" > Blog </a></li>
 		<li><a href=" " id="log" >""" + models.Student.getStudentsWithParser(0).name + "</a></li>"
-	)
+	)}
 
-	//Main Screen Title
-	val titleBox = Html("""<div class="title"><h1><span class="exper">Erika</span><span class="tic">Sandoval</span></h1></div>""")
+	@*Main Screen Title*@
+	@titleBox = @{Html("""<div class="title"><h1><span class="exper">Test</span><span class="tic">Page</span></h1></div>""")}
 
-	//content
-	val content = Html("""
+	@*Content*@
+	@content = @Html( @(defining(0)){slideCounter =>
 		<div class="screenBlockw">
 			<div class="container-fluid">
-				<div class="row"><a name="page2"></a>
+				<div class="row"><a name="page@slideCounter" id="page@(slideCounter+1)">holamundo</a>
 					<div class="col-xs-12" style="margin-top:50px;">
 						<p id="titulo1"><h2>acerca de expertic</h2></p>
 						<h4>este es un prototipo de la página expertic en el cual se desmuestra la funcionalidad así como la experciencia de usuario que se pretende tener en la versión final. el contenido es responsive y los controles intuitivos.
@@ -28,9 +26,10 @@
 				</div>
 			</div>
 		</div>
+@*
 		<div class="screenBlockw">
 			<div class="container-fluid">
-				<div class="row"><a name="page2"></a>
+				<div class="row"><a name="page3"></a>
 					<div class="col-xs-12" style="margin-top:50px;">
 						<p id="titulo1"><h2>acerca de expertic</h2></p>
 						<h4>este es un prototipo de la página expertic en el cual se desmuestra la funcionalidad así como la experciencia de usuario que se pretende tener en la versión final. el contenido es responsive y los controles intuitivos.
@@ -39,12 +38,12 @@
 				</div>
 			</div>
 		</div>
-	""" + )
-
-	//Call to page Skeleton
-	main("Erika Sandoval")(students)(menu)(titleBox)(content)
-}!
 *@
+	})
+
+	@*Call to page Skeleton*@
+	@main("Test Page")(students)(menu)(titleBox)(content)
+@*
 	@main("Erika Sandoval")(students){
 		@for(n <- s){<p>@n</p>}
 	}{
@@ -52,3 +51,4 @@
 	}{
 		<p>hola</p>
 	}
+*@
