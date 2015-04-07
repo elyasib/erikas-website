@@ -10,21 +10,21 @@ import anorm.SqlParser._
 import anorm.ResultSetParser
 
 
-case class Language (lang_id: String, lang_desc: String)
+case class Page (ptype_id: Int, ptype_desc: String)
 
-object Language {
-	val sql: SqlQuery = SQL("select * from language where lang_id = 'es';")
-	val langPars: RowParser[Language] = {
-		str("lang_id") ~
-		str("lang_desc") map {
-			case lang_id ~ lang_desc => Language(lang_id,lang_desc)
+object Page {
+	val sql: SqlQuery = SQL("select * from page_type where ptype_id = 1;")
+	val pagePars: RowParser[Page] = {
+		int("ptype_id") ~
+		str("ptype_desc") map {
+			case ptype_id ~ ptype_desc => Page(ptype_id,ptype_desc)
 		}
 	}
-	val langsPars: ResultSetParser[List[Language]] = {
-		langPars *
+	val pagesPars: ResultSetParser[List[Page]] = {
+		pagePars *
 	}
-	def getLangs: List[Language] = DB.withConnection {
+	def getPages: List[Page] = DB.withConnection {
 		implicit connection => 
-		sql.as(langsPars)
+		sql.as(pagesPars)
 	}
 } 
