@@ -1,29 +1,26 @@
-	@(students: List[Student])
+	@(languages: List[Language])
 
-@{
 	//Top Menu Items
-	val menu = Html(
-		"""<li><a href="#page2" id="aboutBtn"> Acerca de </a></li>
+	@menu = {
+		<li><a href="#page2" id="aboutBtn"> Acerca de </a></li>
 		<li><a href=" " id="signInBtn" > Registrarse </a></li>
 		<li><a href=" " id="logInBtn" > Ingresar </a></li>
 		<li><a href="./blog" id="blogBtn" > Blog </a></li>
-		<li><a href=" " id="log" >""" + models.Student.getStudentsWithParser(0).name + "</a></li>"
-	)
+	}
 
 	//Main Screen Title
-	val titleBox = Html("""<div class="title"><h1><span class="exper">Erika</span><span class="tic">Sandoval</span></h1></div>""")
+	@titleBox = {<div class="title"><h1><span class="exper">Erika</span><span class="tic">Sandoval</span></h1></div>}
 
 	//Content
-	val content = Html("""
+	@content = {
 		<div class="row"><a name="page2"></a>
 			<div class="col-xs-12" style="margin-top:50px;">
 				<p id="titulo1"><h2>Acerca de ExperTIC</h2></p>
 				<h4>Este es un prototipo de la página ExperTIC en el cual se desmuestra la funcionalidad así como la Experciencia de Usuario que se pretende tener en la versión final. El contenido es responsive y los controles intuitivos.
 				</h4>
 			</div>
-		</div>"""
-	)
+		</div>
+	}
 
 	//Call to page Skeleton
-	main("Erika Sandoval")(students)(menu)(titleBox)(content)
-}!
+	@main("Erika Sandoval")(languages)(menu)(titleBox)(content)

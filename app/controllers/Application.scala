@@ -2,18 +2,18 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.Student
+import models.Language
 import play.api.Play.current
 
 object Application extends Controller {
 
   def index = Action {
-    val students = Student.getStudentsWithParser
-    Ok(views.html.index(students))
+    val languages = Language.getLangs
+    Ok(views.html.index(languages))
   }
 
   def blog = Action {
-    val students = Student.getStudentsWithParser
-    Ok(views.html.blog(students))
+    val languages = Language.getLangs
+    Ok(views.html.blog(languages))
   }
 }

@@ -1,8 +1,8 @@
 # --- !Ups
-CREATE TABLE table1(
-  id integer,
-  name character(10)
+create table language (
+lang_id char(2) primary key,
+lang_desc text check (lang_desc <> '')
 );
 
 # --- !Downs
-DROP TABLE IF EXISTS table1;
+DROP TABLE IF EXISTS language;
