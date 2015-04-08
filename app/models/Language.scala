@@ -13,7 +13,7 @@ import anorm.ResultSetParser
 case class Language (lang_id: String, lang_desc: String)
 
 object Language {
-	val sql: SqlQuery = SQL("select * from language where lang_id = 'es';")
+	val sql: SqlQuery = SQL("""select * from language where lang_id = {lang1};""")
 	val langPars: RowParser[Language] = {
 		str("lang_id") ~
 		str("lang_desc") map {
@@ -23,8 +23,8 @@ object Language {
 	val langsPars: ResultSetParser[List[Language]] = {
 		langPars *
 	}
-	def getLangs: List[Language] = DB.withConnection {
+	def getLangs(lang1:String): List[Language] = DB.withConnection {
 		implicit connection => 
-		sql.as(langsPars)
+          sql.on("lang1" -> lang1).as(langsPars)
 	}
 } 

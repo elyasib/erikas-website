@@ -8,12 +8,12 @@ import play.api.Play.current
 object Application extends Controller {
 
   def index = Action {
-    val languages = Language.getLangs
+    val languages = Language.getLangs("en")
     Ok(views.html.index(languages))
   }
 
   def blog = Action {
-    val languages = Language.getLangs
+    val languages = Language.getLangs("en")
     Ok(views.html.blog(languages))
   }
 }
