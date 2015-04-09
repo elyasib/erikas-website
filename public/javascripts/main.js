@@ -37,13 +37,21 @@ var scrollToAnch = function(e) {
 }
 
 var scrollColor = function(menuBar,colorTop,colorScroll) {
-	$(document).scroll(
+	$(window).scroll(
 		function() {
 		if ($(this).scrollTop() > 20) {
-			$(menuBar).removeClass(colorTop).addClass("toggleColorNop");
+			console.log("bot");
+			$("#menuBar").removeClass("toggleColorTop");
+			console.log($("#menuBar")[0].classList);
+			$("#menuBar").addClass("toggleColorNop");
+			console.log($("#menuBar")[0].classList);
 		}
 		else {
-			$("#menuBar").removeClass("toggleColorNop").addClass("toggleColorTop");
+			console.log("top");
+			$("#menuBar").removeClass("toggleColorNop");
+			console.log($("#menuBar")[0].classList);
+			$("#menuBar").addClass("toggleColorTop");
+			console.log($("#menuBar")[0].classList);
 		}
 	});
 }

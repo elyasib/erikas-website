@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html>
+ <html lang="@languages(0).lang_desc">
     <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
@@ -18,13 +18,13 @@
 			@signin()
 		</div>
 		<div id="contentWrapper" class="contentWrapper">
-			<div id="menuBar" class="menuBar" role="navigation">
+			<div id="menuBar" class="menuBar toggleColorTop" role="navigation">
 				<div class="container-fluid">
-    					<div class="navbar-header">
-    						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collMenuBar">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collMenuBar">
 							Menu
-    					 	</button>
-    					</div>
+					 	</button>
+					</div>
 					<div class="collapse navbar-collapse" id="collMenuBar"> 
 						<ul class="nav navbar-nav navbar-left">
 							@menu
@@ -50,6 +50,7 @@
         <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
         <script src="@routes.Assets.at("javascripts/main.js")"></script>
 
+	<!--Move js to apropriate file after testing-->
 	<script>
 		$(document).ready(function() {
 			toggleSideBar("#logInBtn","#logIn","#signIn");

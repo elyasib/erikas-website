@@ -1,73 +1,63 @@
 .toggleColorTop {
-	background-color: transparent;
+/*
+*/
+	background-color: transparent ;
+/*
+*/
         &:hover {
-                background-color: rgba(255,255,255,0.05);
+                background-color: rgba(255,255,255,0.05) ;
         }
 }
 
 .toggleColorNop {
-	background-color: #360033;
+	background-color: #360033 ;
         &:hover {
-                background-color: #360033;
+                background-color: #360033 ;
         }
 }
 
 .menuBar {
-        .exoFont();
-        .navbar();
-        .navbar-default();
-        .navbar-fixed-top();
-	-web-kit-transition: all 0.4s ease;
-        -moz-transition: all 0.4s ease;
-        -o-transition: all 0.4s ease;
-        transition: all 0.4s ease;
+	.exoFont();
+	.navbar();
+	.navbar-default();
+	.navbar-fixed-top();
+/*
+	.toggleColorTop();
+*/
+	-web-kit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
 	button { float: left; margin-left: 10px}
-        .navbar-default {
-
-        li {
-                a {
-                        color: #fff;
-			font-weight: 100 !important;
-                        &:hover,&:focus,&:active {
-                                color: #cbc67e;
-                                background-color: transparent; 
-                        }
-        
-			@media (max-width: @screen-xs-max) { 
-                                font-size: 12px;
-                        }
-                        @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
-                                font-size: 15px;
-                        }
-                        @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
-                                font-size: 15px;
-                        }
-                        @media (min-width: @screen-lg-min) {
-                                font-size: 20px;
-                        }
+	.navbar-header {
+		button {
+			color: #fff;
+			border: 1px solid #fff;
 		}
 	}
-
-        }
-
-        .navbar-header {
-                button {
-                        color: #fff;
-                        border: 1px solid #fff;
-                }
-        }
-
-        .navbar-toggle {
-                .icon-bar {
-                        background-color: #000;
-                        color: #000;
-                }
-                &:hover,&:focus,&:active {
-                        .icon-bar {
-                                background-color: #fff;
-                                color: #fff;
-                        }
-                }
-        }
+	@media (max-width: @screen-xs-max) { 
+		font-size: 12px;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+		font-size: 15px;
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+		font-size: 15px;
+	}
+	@media (min-width: @screen-lg-min) {
+		font-size: 20px;
+	}
+	.navbar-default {
+		li {
+			a {
+				color: #fff;
+				font-weight: 100;
+				&:hover,&:focus,&:active {
+					color: #cbc67e;
+					background-color: transparent; 
+				}
+			}
+		}
+	}
 }
 

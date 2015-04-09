@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Application.home(langVar: String = "en")
+GET     /:langVar                   controllers.Application.home(langVar: String)
 
 # Blog  
 GET     /blog                       controllers.Application.blog

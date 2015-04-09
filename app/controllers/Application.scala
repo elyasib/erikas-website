@@ -2,14 +2,14 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.Language
+import models._
 import play.api.Play.current
 
 object Application extends Controller {
 
-  def index = Action {
-    val languages = Language.getLangs("en")
-    Ok(views.html.index(languages))
+  def home(langVar: String) = Action {
+    val languages = Language.getLangs(langVar)
+    Ok(views.html.home(languages))
   }
 
   def blog = Action {
