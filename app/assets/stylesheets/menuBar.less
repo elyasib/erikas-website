@@ -1,9 +1,5 @@
 .toggleColorTop {
-/*
-*/
 	background-color: transparent ;
-/*
-*/
         &:hover {
                 background-color: rgba(255,255,255,0.05) ;
         }
@@ -21,10 +17,10 @@
 	.navbar();
 	.navbar-default();
 	.navbar-fixed-top();
-	-web-kit-transition: all 0.8s ease;
-	-moz-transition: all 0.8s ease;
-	-o-transition: all 0.8s ease;
-	transition: all 0.8s ease;
+	-web-kit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
 	button { float: left; margin-left: 10px}
 	.navbar-header {
 		button {
@@ -55,6 +51,25 @@
 				}
 			}
 			color: #fff;
+		}
+	}
+	.nav {
+		> li {
+			> a {
+				display: inline-block;
+				.langOpt {
+					padding-left:0;
+					padding-right:0;
+				}
+			}
+			.liSpacer {
+				padding-left:2em;
+				padding-right:2em;
+			}
+			.liPull {
+				margin-left:-0.7em;
+				margin-right:-0.7em;
+			}
 		}
 	}
 }
