@@ -3,11 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.home(langVar: String = "en")
+#GET     /                           controllers.Application.home(langVar: String = "en")
 GET     /:langVar                   controllers.Application.home(langVar: String)
 
+# About me
+#GET     /aboutme                    controllers.Application.blog
+
+# Portfolio  
+#GET     /portfolio                  controllers.Application.blog
+
 # Blog  
-GET     /blog                       controllers.Application.blog
+#GET     /blog                       controllers.Application.blog
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

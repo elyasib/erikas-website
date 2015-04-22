@@ -1,6 +1,7 @@
-	@(languages: List[Language])
+	@(languages: List[Language], langVar: String, langVar2: String)
 
 	@*Top Menu Items*@
+@*
 	@menu = {
 		<li><a href="#page2" id="aboutBtn"> Acerca de </a></li>
 		<li><a href=" " id="signInBtn" > Registrarse </a></li>
@@ -8,6 +9,15 @@
 		<li><a href="./blog" id="blogBtn" > Blog </a></li>
 		<li><span class="liSpacer"> </span></li>
 		<li><a href="/@languages(0).lang_id" id="lang" class='langOpt'> @languages(0).lang_desc </a><span class="liPull">/</span><a href="/@languages(1).lang_id" id="lang" class="langOpt"> @languages(1).lang_desc </a></li>
+	}
+*@
+	@menu = {
+		<li><a href="./aboutme" id=""> About me </a></li>
+		<li><a href="./portfolio" id="" > Portfolio </a></li>
+		<li><a href="./blog" id="" > Blog </a></li>
+		<li><a href="./blog" id="" > @langVar </a></li>
+		<li><a href="./blog" id="" > @langVar2</a></li>
+		<li><span class="liSpacer"> </span></li>
 	}
 
 	@*Main Screen Title*@
