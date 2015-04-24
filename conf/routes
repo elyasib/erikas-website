@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-#GET     /                           controllers.Application.home(langVar: String = "en")
+GET     /                           controllers.Application.home(langVar: String = "en")
 GET     /:langVar                   controllers.Application.home(langVar: String)
 
 # About me
