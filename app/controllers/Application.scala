@@ -9,24 +9,17 @@ object Application extends Controller {
 
   def home(langVar: String) = Action {
     val currntLang = Language.getCurrntLang(langVar)
-    var langVar1: String = ""
-    var langVar2: String = ""
-    if (currntLang(0).lang_desc == "0") {
-      langVar1 = currntLang(0).lang_desc
-      langVar2 = currntLang(1).lang_desc
+    if (currntLang._1 == "0") {
+      val otherLangs = Language.getOtherLangs(langVar)
+        val langsNum:Int = otherLangs._2.length
+        Ok(views.html.home(currntLang._2,otherLangs._2,langsNum))
     }
-    else {
-      langVar2 = "err"
-      langVar1 = currntLang(0).lang_desc
-      //langVar2 = currntLang(1).lang_desc
-    }
-    //val otherLangs = Language.getOtherLangs(langVar)
-    Ok(views.html.home(currntLang,langVar1,langVar2))
+    else
+      NotFound
   }
 
   def blog = Action {
-    //val languages = Language.getLangs("en")
     val currntLang = Language.getCurrntLang("en")
-    Ok(views.html.blog(currntLang))
+    Ok(views.html.blog(currntLang._2))
   }
 }

@@ -2,15 +2,13 @@ package models
 
 import play.api.db._
 import play.api.Play.current
-import anorm.SQL
-import anorm.SqlQuery
-import anorm.RowParser
 import anorm._
-import anorm.SqlParser._
-import anorm.ResultSetParser
-import anorm.SqlQueryResult
+import anorm.{ResultSetParser,SqlQueryResult,RowParser,SQL,SqlQuery}, SqlParser._
+import models.SqlResultParser._
 
-case class Language (lang_id: String, lang_desc: String)
+case class Language (lang_id: String, lang_desc: String) {
+  def this() = this("","")
+}
 
 object Language {
   val langPars: RowParser[Language] = {
@@ -19,28 +17,18 @@ object Language {
     	case lang_id ~ lang_desc => Language(lang_id,lang_desc)
     }
   }
-  val langsPars: ResultSetParser[List[Language]] = {
-	langPars *
-  }
 
-  def getCurrntLang(lang1:String): List[Language] = DB.withConnection {
+  def getCurrntLang(lang1:String): (String,List[Language]) = DB.withConnection {
 	implicit connection => 
     val res: SqlQueryResult = SQL("""select * from language where lang_id = {lang1};""").on("lang1" -> lang1).executeQuery() 
-
-    res.statementWarning match {
-      case Some(warning) => List(Language("sqlcode",res.statementWarning.get.getSQLState()))
-      case _ => { 
-        val result1 = res.as(langPars *)
-        if (result1.isEmpty == true)
-          List(Language("sqlcode","100")) ++ result1 
-        else
-          List(Language("sqlcode","0")) ++ result1  
-      }
-    }
+    val result0 = new Language()
+    parseSqlResult[Language](res,langPars,result0)
   }
 
-  def getOtherLangs(lang1:String): List[Language] = DB.withConnection {
+  def getOtherLangs(lang1:String): (String,List[Language]) = DB.withConnection {
 	implicit connection => 
-      SQL("""select * from language where lang_id <> {lang1};""").on("lang1" -> lang1).as(langsPars) 
+    val res: SqlQueryResult = SQL("""select * from language where lang_id <> {lang1};""").on("lang1" -> lang1).executeQuery() 
+    val result0 = new Language()
+    parseSqlResult[Language](res,langPars,result0)
   }
 } 
