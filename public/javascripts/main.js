@@ -40,18 +40,12 @@ var scrollColor = function(menuBar,colorTop,colorScroll) {
 	$(window).scroll(
 		function() {
 		if ($(this).scrollTop() > 20) {
-			console.log("bot");
 			$("#menuBar").removeClass("toggleColorTop");
-			console.log($("#menuBar")[0].classList);
 			$("#menuBar").addClass("toggleColorNop");
-			console.log($("#menuBar")[0].classList);
 		}
 		else {
-			console.log("top");
 			$("#menuBar").removeClass("toggleColorNop");
-			console.log($("#menuBar")[0].classList);
 			$("#menuBar").addClass("toggleColorTop");
-			console.log($("#menuBar")[0].classList);
 		}
 	});
 }

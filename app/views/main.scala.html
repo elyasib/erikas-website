@@ -32,7 +32,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="screenBlock">
+			<div class="screenBlock sbox" id="box0">
 				<div class="frontBox">
 					<div class="titleBox">
 						@titleBox
@@ -62,7 +62,6 @@
 			;(function($) {
 				"use strict";
 				var instance, proto;
-				var counter1 = 0;
 				function ScrollDisabler($container) {
 					this.$container = $container;	
 				}
@@ -92,23 +91,43 @@
 					}
 				};
 			})(jQuery);
-			var counter = 0;
-			var counter3 = 0;
+			var boxCounter = 0;
 			var handled = false;
+			var lastScrollTarget = "";
+			var scrollToBox = function(e) {
+					$this = $(this);
+					$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
+					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},750,'easeInOutQuint',function() {
+						$this.on("mousewheel DOMMouseScroll touchmove",{numBoxes: e.data.numBoxes},animScroll);
+					});
+			}
 			animScroll = function(e) {
-				counter = counter + 1;
-				console.log("main: "+counter);
-				$this = $(this);
-				$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
-				$('body').animate({scrollTop: $("#page2").offset().top},750,'easeInOutQuint',function() {
-				counter3 = counter3 + 1;
-				console.log("main2: "+counter3);
-				$this.on("mousewheel DOMMouseScroll touchmove",animScroll);
-				});
+				if (lastScrollTarget !== e.originalEvent.target) { //this ensures no further scrolling is done after reaching the inmmediate next/previous box until the user scrolls again
+					lastScrollTarget = e.originalEvent.target; //stores the element from which the scroll originated
+
+					if (e.originalEvent.wheelDelta > 0) {
+						if (boxCounter > 0) {
+							boxCounter = boxCounter - 1;
+							scrollToBox(e);
+						}
+						else {
+							lastScrollTarget = "";
+						}
+					}
+					else {
+						if (boxCounter < 3) {
+							boxCounter = boxCounter + 1;
+							scrollToBox(e);
+						}
+						else {
+							lastScrollTarget = "";
+						}
+					}
+				}
 			}
 			$win = $(window);
 			$win.disablScrllng();
-			$win.on("mousewheel DOMMouseScroll touchmove",animScroll);
+			$win.on("mousewheel DOMMouseScroll touchmove",{numBoxes: 3},animScroll);
 		});
 	</script>
     </body>
