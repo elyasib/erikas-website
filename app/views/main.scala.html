@@ -91,21 +91,31 @@
 					}
 				};
 			})(jQuery);
+			swipeDelta = new Object();
+			swipeDelta.X0 = 0;
+			swipeDelta.Y0 = 0;
+			swipeDelta.X1 = 0;
+			swipeDelta.Y1 = 0;
 			var boxCounter = 0;
 			var handled = false;
 			var lastScrollTarget = "";
 			var scrollToBox = function(e) {
 					$this = $(this);
 					$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
-					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},750,'easeInOutQuint',function() {
+					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},600,'easeInOutQuint',function() {
 						$this.on("mousewheel DOMMouseScroll touchmove",{numBoxes: e.data.numBoxes},animScroll);
 					});
 			}
 			animScroll = function(e) {
-				if (lastScrollTarget !== e.originalEvent.target) { //this ensures no further scrolling is done after reaching the inmmediate next/previous box until the user scrolls again
-					lastScrollTarget = e.originalEvent.target; //stores the element from which the scroll originated
-
-					if (e.originalEvent.wheelDelta > 0) {
+				if (e.type === "touchmove") {
+					swipeDelta.Y1 = (e.originalEvent.touches[0].screenY - swipeDelta.Y0);
+				}
+				else {
+					swipeDelta.Y1 = e.originalEvent.wheelDelta;
+				}
+				if (lastScrollTarget !== e.originalEvent.target) { 
+					lastScrollTarget = e.originalEvent.target; 
+					if (swipeDelta.Y1 > 0) {
 						if (boxCounter > 0) {
 							boxCounter = boxCounter - 1;
 							scrollToBox(e);
@@ -123,10 +133,14 @@
 							lastScrollTarget = "";
 						}
 					}
+					
 				}
 			}
 			$win = $(window);
 			$win.disablScrllng();
+			$win.on('touchstart',function(e){
+				swipeDelta.Y0 = e.originalEvent.touches[0].screenY;
+			});
 			$win.on("mousewheel DOMMouseScroll touchmove",{numBoxes: 3},animScroll);
 		});
 	</script>
