@@ -26,40 +26,64 @@
         -moz-transition: all 0.4s ease;
         -o-transition: all 0.4s ease;
         transition: all 0.4s ease;
+	//background: url('../images/swirl_pattern.png') repeat;
+	overflow: hidden;
 }
 
 .frontBox {
 	.container-fluid();
 	.titleBox {
 		.make-row();
-		padding-top: 40vh;
+		padding-top: 35vh;
 	
 		.title {
 			.make-md-column(12);
 			.text-center();
-			.exoFont();
-			color: #ffa526; .lobster-font();
+			.lobster-font();
+			color: #ffa526; 
 		}
 	
+		.subtitle {
+			.make-md-column(12);
+			.text-center();
+			.amatic-font();
+			color: #ffffff;
+			font-weight:400;
+		}
+
 		h1 {
 			@media (max-width: @screen-xs-max) { 
-				font-size: 60px;
+				font-size: 15vw;
 			}
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
-				font-size: 80px;
+				font-size: 13vw;
 			}
 			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
-				font-size: 90px;
+				font-size: 11vw;
 			}
 			@media (min-width: @screen-lg-min) { 
-				font-size: 110px;
+				font-size: 9vw;
+			}
+		}
+		h2 {
+			@media (max-width: @screen-xs-max) { 
+				font-size: 5vw;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+				font-size: 4vw;
+			}
+			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+				font-size: 3vw;
+			}
+			@media (min-width: @screen-lg-min) { 
+				font-size: 2.5vw;
 			}
 		}
 	}
 	
 	.arrowBox {
 		.make-row();
-		padding-top: 30vh; 
+		padding-top: 20vh; 
 		.arrowDown {
 			.make-md-column(12);
 			.text-center();
