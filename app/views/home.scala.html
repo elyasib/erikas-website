@@ -1,15 +1,15 @@
-@(currntLang: List[Language], otherLangs: List[Language], langsNum: Int, title: String,subtitle: String)
+@(currntLang: List[Language], otherLangs: List[Language], langsNum: Int, title: String,subtitle: String,topMenu:List[TopMenuItem])
 
 	@*Top Menu Items*@
 @menu = {
-	<li><a href="./en/aboutme" id="">About me</a></li>
-	<li><a href="./en/portfolio" id="">Portfolio</a></li>
-	<li><a href="./en/blog" id="">Blog</a></li>
+	@for(menuItem <- topMenu) {
+		<li><a href=".@menuItem.tmitem_link" id="">@menuItem.tmitem_name</a></li>
+	}
 	<li><span class="liSpacer"> </span></li>
-	<li><a href="./@currntLang(0).lang_id" id="">@currntLang(0).lang_desc</a>
+	<li><a href="../@currntLang(0).lang_id" id="">@currntLang(0).lang_desc</a>
 	@for(language <- otherLangs) {
 		<span class="liPull">/</span>
-		<a href="./@language.lang_id" id="" > @language.lang_desc</a>
+		<a href="../@language.lang_id" id="" > @language.lang_desc</a>
 	}
 	</li>
 }

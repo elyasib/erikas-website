@@ -26,8 +26,8 @@ object Application extends Controller {
       if (page._1 == "0") {
 
         val frontScreen = FScreen.getFScreen(page._2(0).page_id,langVar)
-        Ok(views.html.home(currntLang._2,otherLangs._2,langsNum,frontScreen._2(0).fscrn_title,frontScreen._2(0).fscrn_abstract))
-
+        val topMenu = TopMenu.getTopMenu(page._2(0).page_id,langVar) 
+        Ok(views.html.home(currntLang._2,otherLangs._2,langsNum,frontScreen._2(0).fscrn_title,frontScreen._2(0).fscrn_abstract,topMenu._2))
       }
       else {
       NotFound
