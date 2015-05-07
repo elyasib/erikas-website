@@ -98,13 +98,16 @@
 			swipeDelta.X1 = 0;
 			swipeDelta.Y1 = 0;
 			var boxCounter = 0;
+			var lastBox = 0;
 			var handled = false;
 			var lastScrollTarget = "";
 			var scrollToBox = function(e) {
 					$this = $(this);
 					$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
-					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},600,'easeInOutQuint',function() {
+					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},800,'easeInOutQuint',function() {
 						$this.on("mousewheel DOMMouseScroll touchmove",{numBoxes: e.data.numBoxes},animScroll);
+						$("#innbox"+boxCounter.toString()).addClass("zoomBlock");
+						$("#innbox"+(lastBox).toString()).removeClass("zoomBlock");
 					});
 			}
 			animScroll = function(e) {
@@ -118,6 +121,7 @@
 					lastScrollTarget = e.originalEvent.target; 
 					if (swipeDelta.Y1 > 0) {
 						if (boxCounter > 0) {
+							lastBox = boxCounter;
 							boxCounter = boxCounter - 1;
 							scrollToBox(e);
 						}
@@ -127,6 +131,7 @@
 					}
 					else {
 						if (boxCounter < 3) {
+							lastBox = boxCounter;
 							boxCounter = boxCounter + 1;
 							scrollToBox(e);
 						}
