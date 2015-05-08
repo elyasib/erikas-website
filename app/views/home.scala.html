@@ -14,12 +14,6 @@
 	</li>
 }
 
-@*Main Screen Title*@
-@titleBox = {
-	<div class="title"><h1>@title</h1></div>
-	<div class="subtitle"><h2>@subtitle</h2></div>
-}
-
 @*Content*@
 @content = {
 	@*boxi where i goes from 1 to n, and n = #ofScreenBlocks that has the a given page*@
@@ -50,4 +44,4 @@
 }
 
 @*Call to page Skeleton*@
-@main("Erika Sandoval")(currntLang)(menu)(titleBox)(content)
+@main(currntLang)(menu)(title)(subtitle)(content)

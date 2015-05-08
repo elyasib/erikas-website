@@ -1,8 +1,63 @@
-@import "lib/bootstrap/less/bootstrap.less";
+// Core variables and mixins
+@import "lib/bootstrap/less/variables.less";
+@import "lib/bootstrap/less/mixins.less";
+
+// Reset and dependencies
+@import "lib/bootstrap/less/normalize.less";
+//@import "lib/bootstrap/less/print.less";
+
+// Core CSS
+@import "lib/bootstrap/less/scaffolding.less";
+@import "lib/bootstrap/less/type.less";
+//@import "lib/bootstrap/less/code.less";
+@import "lib/bootstrap/less/grid.less";
+@import "lib/bootstrap/less/tables.less";
+@import "lib/bootstrap/less/forms.less";
+//@import "lib/bootstrap/less/buttons.less";
+
+// Components
+@import "lib/bootstrap/less/component-animations.less";
+//@import "lib/bootstrap/less/dropdowns.less";
+//@import "lib/bootstrap/less/button-groups.less";
+@import "lib/bootstrap/less/input-groups.less";
+@import "lib/bootstrap/less/navs.less";
+@import "lib/bootstrap/less/navbar.less";
+//@import "lib/bootstrap/less/responsive-embed.less";
+
+// Utility classes
+@import "lib/bootstrap/less/utilities.less";
+//@import "lib/bootstrap/less/responsive-utilities.less";
+
 @import "stylesheets/fonts.less";
 @import "stylesheets/glyphiconStyle.less";
 @import "stylesheets/sideBar.less";
-@import "stylesheets/menuBar.less";
+//@import "stylesheets/menuBar.less";
+
+.gpuAccelerated {
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-ms-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+
+    -webkit-transition: -webkit-transform 25s ease;
+    -moz-transition: -moz-transform 25s ease;
+    -ms-transition: -ms-transform 25s ease;
+    -o-transition: -o-transform 25s ease;
+    transition: transform 25s ease;
+}
 
 .underlined {
 	text-decoration: underline;
@@ -78,17 +133,38 @@ h3 {
 }
 
 .zoomBlock {
-    -webkit-transform: scale(1.20,1.20);
-	-moz-transform: scale(1.20,1.20);
-	-ms-transform: scale(1.20,1.20);
-    transform: scale(1.20,1.20);
+    -webkit-transform: 
+    scale(1.20,1.20) translateZ(0);
+	-moz-transform: 
+    scale(1.20,1.20) translateZ(0);
+	-ms-transform: 
+    scale(1.20,1.20) translateZ(0);
+	-o-transform: 
+    scale(1.20,1.20) translateZ(0);
+    transform: 
+    scale(1.20,1.20) translateZ(0);
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-ms-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+
     -webkit-transition: -webkit-transform 25s ease;
     -moz-transition: -moz-transform 25s ease;
+    -ms-transition: -ms-transform 25s ease;
     -o-transition: -o-transform 25s ease;
     transition: transform 25s ease;
 }
 
 .bgConfig {
+	//.gpuAccelerated();
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -249,59 +325,48 @@ h3 {
 	.prevBlockConstruct(rgba(0,0,0,0.0),rgba(255,255,255,0.1),#ffffff,previewTitleW,previewAbstract);
 }
 
-.frontBox {
-	.container-fluid();
-	.titleBox {
-		.make-row();
-		padding-top: 35vh;
-	
-		.title {
-			.make-md-column(12);
-			.text-center();
-			.lobster-font();
-			color: #ffa526; 
-		}
-	
-		.subtitle {
-			.make-md-column(12);
-			.text-center();
-			.amatic-font();
-			color: #ffffff;
-			font-weight:400;
-		}
 
-	}
-	
-	.arrowBox {
-		.make-row();
-		padding-top: 20vh; 
-		.arrowDown {
-			.make-md-column(12);
-			.text-center();
-			
-			
-			@media (max-width: @screen-xs-max) { 
-				font-size: 35px;
-			}
-			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
-				font-size: 45px;
-			}
-			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
-				font-size: 50px;
-			}
-			@media (min-width: @screen-lg-min) { 
-				font-size: 60px;
-			}
-			a {
+.title {
+	padding-top: 35vh;
+	.text-center();
+	.lobster-font();
+	color: #ffa526; 
+}
+
+.subtitle {
+	.text-center();
+	.amatic-font();
+	color: #ffffff;
+	font-weight:400;
+}
+
+.arrowBox {
+	padding-top: 20vh; 
+	//.arrowDown {
+		.text-center();
+		
+		
+		@media (max-width: @screen-xs-max) { 
+			font-size: 35px;
+		}
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+			font-size: 45px;
+		}
+		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+			font-size: 50px;
+		}
+		@media (min-width: @screen-lg-min) { 
+			font-size: 60px;
+		}
+		a {
+			color: white;
+			text-shadow: 5px 5px 9px #000;
+			&:hover,&:focus {
 				color: white;
-				text-shadow: 5px 5px 9px #000;
-				&:hover,&:focus {
-					color: white;
-					text-decoration: none;
-					text-shadow: 2px 2px 5px #000;
-				}
+				text-decoration: none;
+				text-shadow: 2px 2px 5px #000;
 			}
 		}
-	}
+	//}
 }
 

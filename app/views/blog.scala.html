@@ -9,9 +9,6 @@
 		<li><a href="./blog" id="blogBtn" > Blog </a></li>"""
 	)}
 
-	@*Main Screen Title*@
-	@titleBox = @{Html("""<div class="title"><h1><span class="exper">Test</span><span class="tic">Page</span></h1></div>""")}
-
 	@*Content*@
 	@content = {
 		<div class="screenBlockw">
@@ -25,29 +22,7 @@
 				</div>
 			</div>
 		</div>
-@*
-		<div class="screenBlockw">
-			<div class="container-fluid">
-				<div class="row"><a name="page3"></a>
-					<div class="col-xs-12" style="margin-top:50px;">
-						<p id="titulo1"><h2>acerca de expertic</h2></p>
-						<h4>este es un prototipo de la página expertic en el cual se desmuestra la funcionalidad así como la experciencia de usuario que se pretende tener en la versión final. el contenido es responsive y los controles intuitivos.
-						</h4>
-					</div>
-				</div>
-			</div>
-		</div>
-*@
 	}
 
 	@*Call to page Skeleton*@
-	@main("Test Page")(languages)(menu)(titleBox)(content)
-@*
-	@main("Erika Sandoval")(students){
-		@for(n <- s){<p>@n</p>}
-	}{
-		<p>hola</p>
-	}{
-		<p>hola</p>
-	}
-*@
+	@main(languages)(menu)("titulo")("subtitulo")(content)

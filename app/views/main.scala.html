@@ -1,4 +1,4 @@
-@(title: String)(languages: List[Language])(menu: Html)(titleBox: Html)(content: Html)(implicit lang: Lang)
+@(languages: List[Language])(menu: Html)(frontTitle: String)(frontSubtitle: String)(content: Html)(implicit lang: Lang)
 @import play.api.Play.current 
 
 <!DOCTYPE html>
@@ -8,22 +8,23 @@
 	    <meta charset="utf-8"/>
 	    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
 	    <meta name="theme-color" content="#F45C43">
-        <title>@title</title>
+		<meta name="description" content="Erika Sandoval Castellanos - Content creation, digital marketing and social media"/>
+        <title>@frontTitle</title>
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/erikasc.ico")">
     </head>
     <body>
 	<div id="pageWrapper" class="pageWrapper">
 		<div class="sideBarWrapper" id="sideBarWrapper">
-			@login()
-			@signin()
+			//@login()
+			//@signin()
 		</div>
 		<div id="contentWrapper" class="contentWrapper">
 			<div id="menuBar" class="menuBar toggleColorTop" role="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collMenuBar">
-							Menu
+							MENU
 					 	</button>
 					</div>
 					<div class="collapse navbar-collapse" id="collMenuBar"> 
@@ -34,14 +35,9 @@
 				</div>
 			</div>
 			<div class="screenBlock sbox" id="box0">
-				<div class="frontBox">
-					<div class="titleBox">
-						@titleBox
-					</div>
-					<div class="arrowBox">
-						<div class="arrowDown"><a href="#page2"><span class="icon-arrowDown"></span></a></div>
-					</div>
-				</div>
+				<div class="title"><h1>@frontTitle</h1></div>
+				<div class="subtitle"><h2>@frontSubtitle</h2></div>
+				<div class="arrowBox"><a href="#"><span class="icon-arrowDown"></span></a></div>
 			</div>
 				@content
 		</div>
@@ -104,13 +100,20 @@
 			var scrollToBox = function(e) {
 					$this = $(this);
 					$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
-					$('body').animate({scrollTop: $("#box"+boxCounter.toString()).offset().top},800,'easeInOutQuint',function() {
+					var currBox=document.getElementById("box"+boxCounter.toString());
+					$currBox=$(currBox);
+					var currinnBox=document.getElementById("innbox"+boxCounter.toString());
+					$currinnBox=$(currinnBox);
+					var previnnBox=document.getElementById("innbox"+lastBox.toString());
+					$previnnBox=$(previnnBox);
+					$('body').animate({scrollTop: $currBox.offset().top},800,'easeInOutQuint',function() {
 						$this.on("mousewheel DOMMouseScroll touchmove",{numBoxes: e.data.numBoxes},animScroll);
-						$("#innbox"+boxCounter.toString()).addClass("zoomBlock");
-						$("#innbox"+(lastBox).toString()).removeClass("zoomBlock");
+						$currinnBox.addClass("zoomBlock");
+						$previnnBox.removeClass("zoomBlock");
 					});
 			}
 			animScroll = function(e) {
+				//Detect if the scroll came from a swipe or a mouse/keyboard and compute the 
 				if (e.type === "touchmove") {
 					swipeDelta.Y1 = (e.originalEvent.touches[0].screenY - swipeDelta.Y0);
 				}
@@ -155,7 +158,6 @@
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
 		ga('create', 'UA-61173458-2', 'auto');
 		ga('send', 'pageview');
 	</script>

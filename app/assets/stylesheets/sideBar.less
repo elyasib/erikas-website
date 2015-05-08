@@ -2,10 +2,6 @@
 
 @import "stylesheets/menuBar.less";
 
-.pushRightTop {
-	margin-top: 10px;
-	margin-right: 20px;
-}
 
 .pageWrapper {
 	padding-left: 0px;
@@ -15,63 +11,64 @@
 	transition: all 0.4s ease;
 	
 	&.toggled {
-		@media (max-width: @screen-xs-max) {
-			padding-left: 250px;
-		}
-		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-			padding-left: 250px;
-		}
-		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-			padding-left: 250px;
-		}
-		@media (min-width: @screen-lg-min) {
-			padding-left: 250px;
-		}
+		//@media (max-width: @screen-xs-max) {
+		//	padding-left: 250px;
+		//}
+		//@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		//	padding-left: 250px;
+		//}
+		//@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		//	padding-left: 250px;
+		//}
+		//@media (min-width: @screen-lg-min) {
+		//	padding-left: 250px;
+		//}
+		padding-left: 250px;
 		.sideBarWrapper {
-			@media (max-width: @screen-xs-max) {
-				width: 250px;
-			}
-			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				width: 250px;
-			}
-			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-				width: 250px;
-			}
-			@media (min-width: @screen-lg-min) {
-				width: 250px;
-			}
+			//@media (max-width: @screen-xs-max) {
+			//	width: 250px;
+			//}
+			//@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			//	width: 250px;
+			//}
+			//@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+			//	width: 250px;
+			//}
+			//@media (min-width: @screen-lg-min) {
+			//	width: 250px;
+			//}
+			width: 250px;
 		}
 		.contentWrapper {
-			@media (max-width: @screen-xs-max) {
-				position: absolute;
-				margin-right: -250px;
-			}
-			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				position: absolute;
-				margin-right: -250px;
-			}
-			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-				position: absolute;
-				margin-right: -250px;
-			}
-			@media (min-width: @screen-lg-min) {
-				position: absolute;
-				margin-right: -250px;
-			}
+			position: absolute;
+			//@media (max-width: @screen-xs-max) {
+			//	margin-right: -250px;
+			//}
+			//@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			//	margin-right: -250px;
+			//}
+			//@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+			//	margin-right: -250px;
+			//}
+			//@media (min-width: @screen-lg-min) {
+			//	margin-right: -250px;
+			//}
+			margin-right: -250px;
 		}
 		.menuBar {
-			@media (max-width: @screen-xs-max) {
-				margin-left: 250px;
-			}
-			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin-left: 250px;
-			}
-			@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-				margin-left: 250px;
-			}
-			@media (min-width: @screen-lg-min) {
-				margin-left: 250px;
-			}
+			//@media (max-width: @screen-xs-max) {
+			//	margin-left: 250px;
+			//}
+			//@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			//	margin-left: 250px;
+			//}
+			//@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+			//	margin-left: 250px;
+			//}
+			//@media (min-width: @screen-lg-min) {
+			//	margin-left: 250px;
+			//}
+			margin-left: 250px;
 		}
 	}
 }
@@ -81,7 +78,7 @@
 	position: fixed;
 	width: 0;
 	height: 100%;
-	overflow-y: auto;
+	overflow-y: hidden; //auto
 	background: #000;
 	-webkit-transition: all 0.4s ease;
 	-moz-transition: all 0.4s ease;
@@ -107,9 +104,7 @@
 
 .contentWrapper {
 	z-index: 1000;
-	width: 100%;
-	//width: 100vh;
-	//padding: 15px;
+	width: 100vh;
 }
 
 .sidebarNav {
@@ -138,7 +133,7 @@
 				color: #fff;
 				background: rgba(255,255,255,0.2);
 			}
-			&:acive,&:focus {
+			&:active, &:focus {
 				text-decoration: none;
 			}
 		}
