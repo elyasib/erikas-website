@@ -25,8 +25,8 @@
     <body>
 	<div id="pageWrapper" class="pageWrapper">
 		<div class="sideBarWrapper" id="sideBarWrapper">
-			//@login()
-			//@signin()
+			@contact()
+			<!--@signin()-->
 		</div>
 		<div id="contentWrapper" class="contentWrapper">
 			<div id="menuBar" class="menuBar toggleColorTop" role="navigation">
@@ -46,7 +46,11 @@
 			<div class="screenBlock sbox" id="box0">
 				<div class="title"><h1>@frontTitle</h1></div>
 				<div class="subtitle"><h2>@frontSubtitle</h2></div>
-				<div class="arrowBox"><a href="#"><span class="icon-arrowDown"></span></a></div>
+				<div class="arrowBox" id="arrow">
+					<a>
+						<span class="icon-arrowDown"></span>
+					</a>
+				</div>
 			</div>
 				@content
 		</div>
@@ -58,9 +62,10 @@
 	<script>
 		$(document).ready(function() {
 			$(window).discrete_scroll();
-			toggleSideBar("#logInBtn","#logIn","#signIn");
-			toggleSideBar("#signInBtn","#signIn","#logIn");
-			//closeSideBar("#sidebarClose","#signIn","#logIn");
+			toggleSideBar("#logInBtn","#contact","#signIn");
+			toggleSideBar("#signInBtn","#signIn","#contact");
+			scrollToAnch1($("#arrow"));
+			closeSideBar("#sidebarClose","#signIn","#logIn");
 			//formBehavior();
 		});
 	</script>

@@ -156,11 +156,11 @@ h3 {
 	-o-perspective: 1000;
 	perspective: 1000;
 
-    -webkit-transition: -webkit-transform 25s;
-    -moz-transition: -moz-transform 25s;
-    -ms-transition: -ms-transform 25s;
-    -o-transition: -o-transform 25s;
-    transition: transform 25s ease;
+    -webkit-transition: -webkit-transform 25s ease-out;
+    -moz-transition: -moz-transform 25s ease-out;
+    -ms-transition: -ms-transform 25s ease-out;
+    -o-transition: -o-transform 25s ease-out;
+    transition: transform 25s ease-out;
 }
 
 .bgConfig {
@@ -194,6 +194,53 @@ h3 {
 	.bgConfig();
 }
 
+.prevTitleConstruct(@baseColor,@activeColor) {
+    .lobster-font();
+	h2 {
+    	-webkit-transition: 
+    	font-size,color,padding-top 0.4s ease;
+    	-moz-transition: 
+    	font-size,color,padding-top 0.4s ease;
+    	-o-transition: 
+    	font-size,color,padding-top 0.4s ease;
+    	transition: 
+    	font-size,color,padding-top 0.4s ease;
+		text-align:center;
+		@media (max-width: @screen-xs-max) { 
+			font-size: 6vw;
+			color: @activeColor;
+			padding-top: 0;
+		}
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+			font-size: 5vw;
+			color: @activeColor;
+			padding-top: 0;
+		}
+		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
+			font-size: 4vw;
+			color: @baseColor;
+			padding-top: 10vh;
+		}
+		@media (min-width: @screen-lg-min) { 
+			font-size: 4vw;
+			color: @baseColor;
+			padding-top: 10vh;
+		}
+	}
+}
+
+.prevAbstractConstruct(@textColor) {
+	h3 {
+		color: @textColor;
+	}
+	.poiret-font();
+	@media (max-width: @screen-xs-max) and (max-width: @screen-sm-max) { 
+		visibility: visible;
+	}
+	@media (min-width: @screen-md-min) { 
+		visibility: hidden;
+	}
+}
 
 .prevBlockConstruct(@baseColor,@activeColor,@prevTitleColor,@titleClass,@abstractClass) {
 	position: relative;
@@ -257,53 +304,6 @@ h3 {
 	}
 }
 
-.prevTitleConstruct(@baseColor,@activeColor) {
-    .lobster-font();
-	h2 {
-    	-webkit-transition: 
-    	font-size,color,padding-top 0.4s ease;
-    	-moz-transition: 
-    	font-size,color,padding-top 0.4s ease;
-    	-o-transition: 
-    	font-size,color,padding-top 0.4s ease;
-    	transition: 
-    	font-size,color,padding-top 0.4s ease;
-		text-align:center;
-		@media (max-width: @screen-xs-max) { 
-			font-size: 6vw;
-			color: @activeColor;
-			padding-top: 0;
-		}
-		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
-			font-size: 5vw;
-			color: @activeColor;
-			padding-top: 0;
-		}
-		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {  
-			font-size: 4vw;
-			color: @baseColor;
-			padding-top: 10vh;
-		}
-		@media (min-width: @screen-lg-min) { 
-			font-size: 4vw;
-			color: @baseColor;
-			padding-top: 10vh;
-		}
-	}
-}
-
-.prevAbstractConstruct(@textColor) {
-	h3 {
-		color: @textColor;
-	}
-	.poiret-font();
-	@media (max-width: @screen-xs-max) and (max-width: @screen-sm-max) { 
-		visibility: visible;
-	}
-	@media (min-width: @screen-md-min) { 
-		visibility: hidden;
-	}
-}
 
 .previewAbstract {
 	.prevAbstractConstruct(#eeeeee);
@@ -319,11 +319,11 @@ h3 {
 
 
 .previewTitleW {
-	.prevTitleConstruct(#ffffff,#000000);
+	.prevTitleConstruct(#ffffff,#ffffff);
 }
 
-.previewBlockW {
-	.prevBlockConstruct(rgba(0,0,0,0.0),rgba(255,255,255,0.1),#ffffff,previewTitleW,previewAbstract);
+.previewBlock2 {
+	.prevBlockConstruct(rgba(0,0,0,0.0),rgba(0,0,0,0.7),#ffffff,previewTitleW,previewAbstract);
 }
 
 

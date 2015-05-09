@@ -2,9 +2,11 @@
 
 var closeSideBar = undefined;
 var toggleSideBar = undefined;
-var scrollToAnch = undefined
-var collapseMenuBar = undefined
-var formBehavior = undefined
+var scrollToAnch = undefined;
+var scrollToAnch1 = undefined;
+var collapseMenuBar = undefined;
+var formBehavior = undefined;
+var $secondBox=$(document.getElementById("box2"));
 
 //function added to JQuery.fn to enable custom scrolling
 $(document).ready(function() {
@@ -13,6 +15,10 @@ $(document).ready(function() {
 	var $menuBar = $("#menuBar");
 	var $win = $(window);
 	var $body=$('body');
+	var currBox = 0;
+	var lastBox = 0;
+	var lastTarget="";
+	var scrollFinished=true;
 
 	function switchClass(targetId,class1,class2) {
 		targetId.removeClass(class2);
@@ -28,9 +34,9 @@ $(document).ready(function() {
 		var swipeDeltaY0 = 0;
 		var swipeDeltaX1 = 0;
 		var swipeDeltaY1 = 0;
-		var currBox = 0;
-		var lastBox = 0;
-		var lastTarget="";
+		//var currBox = 0;
+		//var lastBox = 0;
+		//var lastTarget="";
 		var prueba = "esta es una prueba";
 		function DiscreteScroll($container) {
 			this.$container = $container;	
@@ -39,9 +45,11 @@ $(document).ready(function() {
 			var $currBox=$(document.getElementById("box"+currBox.toString()));
 			var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
 			var $previnnBox=$(document.getElementById("innbox"+lastBox.toString()));
-			$body.animate({scrollTop: $currBox.offset().top},800,'easeInOutQuint',function() {
+			$body.animate({scrollTop: $currBox.offset().top},800,'easeInOutQuart',function() {
 				$currinnBox.addClass("zoomBlock");
 				$previnnBox.removeClass("zoomBlock");
+				scrollFinished = true;
+				currBox === 0 ? switchClass($menuBar,"toggleColorTop","toggleColorNop") : switchClass($menuBar,"toggleColorNop","toggleColorTop");
 			});
 		}
 		DiscreteScroll.prototype.enable = function() {
@@ -57,7 +65,9 @@ $(document).ready(function() {
 		}
 		DiscreteScroll.prototype.handleScroll = function(e) {
 			e.preventDefault();
+			//if (lastTarget !== e.originalEvent.target && scrollFinished === true) { 
 			if (lastTarget !== e.originalEvent.target) { 
+				scrollFinished = false;
 				lastTarget = e.originalEvent.target;
 				swipeDeltaY1 = e.type === "touchmove" ? (e.originalEvent.touches[0].screenY - swipeDeltaY0) : e.originalEvent.wheelDelta;
 
@@ -66,10 +76,11 @@ $(document).ready(function() {
 						lastBox = currBox;
 						currBox--;
 						instance.scrollToBox();
-						if (currBox === 0) switchClass($menuBar,"toggleColorTop","toggleColorNop");
+						//if (currBox === 0) switchClass($menuBar,"toggleColorTop","toggleColorNop");
 					}
 					else {
 						lastTarget = "";
+						scrollFinished = true;
 					}
 				}
 				else {  //scrolling downward
@@ -77,10 +88,11 @@ $(document).ready(function() {
 						lastBox = currBox;
 						currBox++;
 						instance.scrollToBox();//scrollToBox(e);
-						switchClass($menuBar,"toggleColorNop","toggleColorTop");
+						//switchClass($menuBar,"toggleColorNop","toggleColorTop");
 					}
 					else {
 						lastTarget = "";
+						scrollFinished = true;
 					}
 				}
 
@@ -107,7 +119,6 @@ $(document).ready(function() {
 	})(jQuery);
 	
 	toggleSideBar = function(btnSideBar,formIn,formOut) {
-	//function toggleSideBar(btnSideBar,formIn,formOut) {
 		var $formIn = $(formIn);
 		var $formOut = $(formOut);
 		$doc.on("click",btnSideBar,function (e) {
@@ -129,26 +140,21 @@ $(document).ready(function() {
 		});
 	}
 	
-	scrollToAnch = function(e) {
-	                $('a[href*=#]:not([href=#])').click(function(e) {
-	                       if( $(e.target).is('a') ) {
-	                        	$(e.target).parent().parent().parent().collapse('hide');
-	                        } 
-				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
-	                            || location.hostname == this.hostname) {
-	
-	                            var target = $(this.hash);
-	                            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-	                               if (target.length) {
-	                                 $('html,body').animate({
-	                                     scrollTop: target.offset().top
-	                                }, 1000);
-	                                return false;
-	                            }
-	                        }
-	                }); 
+	scrollToAnch1 = function(scrollBtn) {
+		scrollBtn.on("click",function(){
+			currBox=1;
+			lastBox=0;
+			lastTarget="";
+			var $currBox=$(document.getElementById("box1"));
+			var $currinnBox=$(document.getElementById("innbox1"));
+			var $previnnBox=$(document.getElementById("innbox0"));
+			$body.animate({scrollTop: $("#box1").offset().top},800,'easeInOutQuart',function() {
+				$currinnBox.addClass("zoomBlock");
+				$previnnBox.removeClass("zoomBlock");
+				switchClass($menuBar,"toggleColorNop","toggleColorTop");
+			});
+		});
 	}
-	
 	
 	formBehavior = function() {
 		$doc.on("keypress", ".tabOnEnter" , function(e) {
