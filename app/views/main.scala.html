@@ -6,12 +6,21 @@
  <html lang="@languages(0).lang_id">
     <head>
 	    <meta charset="utf-8"/>
-	    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0,initial-scale = 1.0,maximum-scale = 1.0" />
+		<!--<meta name="viewport" content="width=device-width, minimu-scale=1.0" />-->
 	    <meta name="theme-color" content="#F45C43">
 		<meta name="description" content="Erika Sandoval Castellanos - Content creation, digital marketing and social media"/>
         <title>@frontTitle</title>
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/erikasc.ico")">
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-61173458-2', 'auto');
+			ga('send', 'pageview');
+		</script>
     </head>
     <body>
 	<div id="pageWrapper" class="pageWrapper">
@@ -42,124 +51,18 @@
 				@content
 		</div>
 	</div>
-        <script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
-        <script src="@routes.Assets.at("lib/jquery-ui/jquery-ui.min.js")"></script>
-        <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
-        <script src="@routes.Assets.at("javascripts/main.js")"></script>
-
-	<!--Move js to apropriate file after testing-->
+    <script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("lib/jquery-ui/jquery-ui.min.js")"></script>
+    <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@routes.Assets.at("javascripts/main.js")"></script>
 	<script>
 		$(document).ready(function() {
+			$(window).discrete_scroll();
 			toggleSideBar("#logInBtn","#logIn","#signIn");
 			toggleSideBar("#signInBtn","#signIn","#logIn");
-			closeSideBar("#sidebarClose","#signIn","#logIn");
-			scrollColor("#menuBar","toggleColorTop","toggleColorNop");
-			formBehavior();
-			collapseMenuBar("#menuBar","#collMenuBar");
-			;(function($) {
-				"use strict";
-				var instance, proto;
-				function ScrollDisabler($container) {
-					this.$container = $container;	
-				}
-				proto = ScrollDisabler.prototype;
-				proto.disabl = function() {
-					var t = this;	
-					t.$container.on(
-						"mousewheel.disablescroll DOMMouseScroll.disablescroll touchmove.disablescroll", t._handlewheel
-					);
-				};
-				proto._handlewheel = function(e) {
-					e.preventDefault();
-				};
-				proto.enabl = function() {
-					var t = this;	
-					t.$container.off(".disablescroll");
-				};
-				$.fn.disablScrllng = function(opt) {
-					if (!instance) {
-						instance = new ScrollDisabler(this);
-					}
-					if (instance && typeof opt === "undefined") {
-						instance.disabl();
-					}
-					if (instance && opt === "enable") {
-						instance.enabl();
-					}
-				};
-			})(jQuery);
-			swipeDelta = new Object();
-			swipeDelta.X0 = 0;
-			swipeDelta.Y0 = 0;
-			swipeDelta.X1 = 0;
-			swipeDelta.Y1 = 0;
-			var boxCounter = 0;
-			var lastBox = 0;
-			var handled = false;
-			var lastScrollTarget = "";
-			var scrollToBox = function(e) {
-					$this = $(this);
-					$this.off("mousewheel DOMMouseScroll touchmove",animScroll);
-					var currBox=document.getElementById("box"+boxCounter.toString());
-					$currBox=$(currBox);
-					var currinnBox=document.getElementById("innbox"+boxCounter.toString());
-					$currinnBox=$(currinnBox);
-					var previnnBox=document.getElementById("innbox"+lastBox.toString());
-					$previnnBox=$(previnnBox);
-					$('body').animate({scrollTop: $currBox.offset().top},800,'easeInOutQuint',function() {
-						$this.on("mousewheel DOMMouseScroll touchmove",{numBoxes: e.data.numBoxes},animScroll);
-						$currinnBox.addClass("zoomBlock");
-						$previnnBox.removeClass("zoomBlock");
-					});
-			}
-			animScroll = function(e) {
-				//Detect if the scroll came from a swipe or a mouse/keyboard and compute the 
-				if (e.type === "touchmove") {
-					swipeDelta.Y1 = (e.originalEvent.touches[0].screenY - swipeDelta.Y0);
-				}
-				else {
-					swipeDelta.Y1 = e.originalEvent.wheelDelta;
-				}
-				if (lastScrollTarget !== e.originalEvent.target) { 
-					lastScrollTarget = e.originalEvent.target; 
-					if (swipeDelta.Y1 > 0) {
-						if (boxCounter > 0) {
-							lastBox = boxCounter;
-							boxCounter = boxCounter - 1;
-							scrollToBox(e);
-						}
-						else {
-							lastScrollTarget = "";
-						}
-					}
-					else {
-						if (boxCounter < 3) {
-							lastBox = boxCounter;
-							boxCounter = boxCounter + 1;
-							scrollToBox(e);
-						}
-						else {
-							lastScrollTarget = "";
-						}
-					}
-					
-				}
-			}
-			$win = $(window);
-			$win.disablScrllng();
-			$win.on('touchstart',function(e){
-				swipeDelta.Y0 = e.originalEvent.touches[0].screenY;
-			});
-			$win.on("mousewheel DOMMouseScroll touchmove",{numBoxes: 3},animScroll);
+			//closeSideBar("#sidebarClose","#signIn","#logIn");
+			//formBehavior();
 		});
-	</script>
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-61173458-2', 'auto');
-		ga('send', 'pageview');
 	</script>
     </body>
 </html>
