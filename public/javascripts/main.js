@@ -65,8 +65,7 @@ $(document).ready(function() {
 		}
 		DiscreteScroll.prototype.handleScroll = function(e) {
 			e.preventDefault();
-			//if (lastTarget !== e.originalEvent.target && scrollFinished === true) { 
-			if (lastTarget !== e.originalEvent.target) { 
+			if (lastTarget !== e.originalEvent.target && scrollFinished === true) { 
 				scrollFinished = false;
 				lastTarget = e.originalEvent.target;
 				swipeDeltaY1 = e.type === "touchmove" ? (e.originalEvent.touches[0].screenY - swipeDeltaY0) : e.originalEvent.wheelDelta;
