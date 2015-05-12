@@ -8,7 +8,6 @@ var collapseMenuBar = undefined;
 var formBehavior = undefined;
 var $secondBox=$(document.getElementById("box2"));
 
-//function added to JQuery.fn to enable custom scrolling
 $(document).ready(function() {
 	var $pageWrapper = $("#pageWrapper");
 	var $doc = $(document);
@@ -19,6 +18,8 @@ $(document).ready(function() {
 	var lastBox = 0;
 	var lastTarget="";
 	var scrollFinished=true;
+	var $htmlBody=$("html,body");
+	var $pageWrapper=$("#pageWrapper");
 
 	function switchClass(targetId,class1,class2) {
 		targetId.removeClass(class2);
@@ -27,6 +28,7 @@ $(document).ready(function() {
 
 	switchClass($menuBar,"toggleColorTop","toggleColorNop");
 
+	//function added to JQuery.fn to enable custom scrolling
 	;(function($) {
 		"use strict";
 		var instance;
@@ -34,22 +36,19 @@ $(document).ready(function() {
 		var swipeDeltaY0 = 0;
 		var swipeDeltaX1 = 0;
 		var swipeDeltaY1 = 0;
-		//var currBox = 0;
-		//var lastBox = 0;
-		//var lastTarget="";
-		var prueba = "esta es una prueba";
 		function DiscreteScroll($container) {
 			this.$container = $container;	
 		}
 		DiscreteScroll.prototype.scrollToBox = function() {
 			var $currBox=$(document.getElementById("box"+currBox.toString()));
+			console.log("started");
 			var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
 			var $previnnBox=$(document.getElementById("innbox"+lastBox.toString()));
-			$body.animate({scrollTop: $currBox.offset().top},800,'easeInOutQuart',function() {
-				$currinnBox.addClass("zoomBlock");
+			$htmlBody.animate({scrollTop: $currBox.offset().top},800,'easeInOutQuart',function() {
+				$currinnBox.addClass("zoomBlock").removeClass("willScroll");
 				$previnnBox.removeClass("zoomBlock");
-				scrollFinished = true;
 				currBox === 0 ? switchClass($menuBar,"toggleColorTop","toggleColorNop") : switchClass($menuBar,"toggleColorNop","toggleColorTop");
+				setTimeout(function(){scrollFinished=true;console.log("finished");},400);
 			});
 		}
 		DiscreteScroll.prototype.enable = function() {
@@ -74,8 +73,11 @@ $(document).ready(function() {
 					if (currBox > 0) {
 						lastBox = currBox;
 						currBox--;
-						instance.scrollToBox();
-						//if (currBox === 0) switchClass($menuBar,"toggleColorTop","toggleColorNop");
+						console.log("preparing");
+						var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
+						$currinnBox.addClass("willScroll");
+						console.log("scheduling");
+						setTimeout(function(){instance.scrollToBox();},50);
 					}
 					else {
 						lastTarget = "";
@@ -86,8 +88,12 @@ $(document).ready(function() {
 					if (currBox < 3) { //here should go the total number of preview blocks
 						lastBox = currBox;
 						currBox++;
-						instance.scrollToBox();//scrollToBox(e);
-						//switchClass($menuBar,"toggleColorNop","toggleColorTop");
+						console.log("preparing");
+						var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
+						$currinnBox.addClass("willScroll");
+						//instance.scrollToBox();//scrollToBox(e);
+						console.log("scheduling");
+						setTimeout(function(){instance.scrollToBox();},50);
 					}
 					else {
 						lastTarget = "";

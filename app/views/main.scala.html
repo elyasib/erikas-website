@@ -7,26 +7,16 @@
     <head>
 	    <meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0,initial-scale = 1.0,maximum-scale = 1.0" />
-		<!--<meta name="viewport" content="width=device-width, minimu-scale=1.0" />-->
 	    <meta name="theme-color" content="#F45C43">
 		<meta name="description" content="Erika Sandoval Castellanos - Content creation, digital marketing and social media"/>
         <title>@frontTitle</title>
-        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.min.css")">
         <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/erikasc.ico")">
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', 'UA-61173458-2', 'auto');
-			ga('send', 'pageview');
-		</script>
     </head>
     <body>
 	<div id="pageWrapper" class="pageWrapper">
 		<div class="sideBarWrapper" id="sideBarWrapper">
 			@contact()
-			<!--@signin()-->
 		</div>
 		<div id="contentWrapper" class="contentWrapper">
 			<div id="menuBar" class="menuBar toggleColorTop" role="navigation">
@@ -56,18 +46,26 @@
 		</div>
 	</div>
     <script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
-    <script src="@routes.Assets.at("lib/jquery-ui/jquery-ui.min.js")"></script>
+	<script src="@routes.Assets.at("lib/jquery-ui/jquery-ui.min.js")"></script>
     <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
     <script src="@routes.Assets.at("javascripts/main.js")"></script>
 	<script>
 		$(document).ready(function() {
 			$(window).discrete_scroll();
-			toggleSideBar("#logInBtn","#contact","#signIn");
-			toggleSideBar("#signInBtn","#signIn","#contact");
+			toggleSideBar("#contactBtn","#contact","#signIn");
+			//toggleSideBar("#signInBtn","#signIn","#contact");
 			scrollToAnch1($("#arrow"));
-			closeSideBar("#sidebarClose","#signIn","#logIn");
+			closeSideBar("#sidebarClose","#contact","#logIn");
 			//formBehavior();
 		});
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-61173458-2', 'auto');
+		ga('send', 'pageview');
 	</script>
     </body>
 </html>

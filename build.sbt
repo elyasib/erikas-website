@@ -17,3 +17,12 @@ libraryDependencies ++= Seq(
   "org.webjars" % "jquery-ui" % "1.11.4",
   "org.postgresql" % "postgresql" % "9.3-1102-jdbc41"
 )
+
+LessKeys.compress in Assets := true
+
+LessKeys.cleancss in Assets := true
+
+//excludeFilter in (Assets, LessKeys.less) := "*.less"
+
+includeFilter in (Assets, LessKeys.less) := "main.less"
+

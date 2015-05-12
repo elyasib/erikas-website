@@ -33,34 +33,9 @@
 @import "stylesheets/sideBar.less";
 //@import "stylesheets/menuBar.less";
 
-//.gpuAccelerated {
-//	-webkit-transform: translateZ(0);
-//	-moz-transform: translateZ(0);
-//	-ms-transform: translateZ(0);
-//	-o-transform: translateZ(0);
-//	transform: translateZ(0);
-//
-//	-webkit-backface-visibility: hidden;
-//	-moz-backface-visibility: hidden;
-//	-ms-backface-visibility: hidden;
-//	-o-backface-visibility: hidden;
-//	backface-visibility: hidden;
-//
-//	-webkit-perspective: 1000;
-//	-moz-perspective: 1000;
-//	-ms-perspective: 1000;
-//	-o-perspective: 1000;
-//	perspective: 1000;
-//
-//    -webkit-transition: -webkit-transform 25s ease;
-//    -moz-transition: -moz-transform 25s ease;
-//    -ms-transition: -ms-transform 25s ease;
-//    -o-transition: -o-transform 25s ease;
-//    transition: transform 25s ease;
-//}
 
 .underlined {
-	text-decoration: underline;
+	border-bottom: 1px solid white;
 }
 
 h1 {
@@ -114,10 +89,6 @@ h3 {
 	width: 100vw;
 	#gradient > .directional(#EB3349;#F45C43;45deg);
     padding-left: 0px;
-    //-webkit-transition: inherit;
-    //-moz-transition: inherit;
-    //-o-transition: inherit;
-    //transition: inherit;
 }
 
 .screenBlockw {
@@ -125,10 +96,6 @@ h3 {
 	height: 100vh;
 	width: 100vw;
     padding-left: 0px;
-    //-webkit-transition: inherit;
-    //-moz-transition: inherit;
-    //-o-transition: inherit;
-    //transition: inherit;
 	overflow: hidden;
 }
 
@@ -144,6 +111,30 @@ h3 {
     transform: 
     scale(1.20,1.20) translateZ(0);
 
+    -webkit-transition: -webkit-transform 25s ease-out;
+    -moz-transition: -moz-transform 25s ease-out;
+    -ms-transition: -ms-transform 25s ease-out;
+    -o-transition: -o-transform 25s ease-out;
+    transition: transform 25s ease-out;
+}
+
+.willScroll {
+	will-change: scroll-position,transform,-webkit-transform;
+}
+
+.willSlide {
+	will-change: scroll-position,transform,-webkit-transform;
+}
+
+.bgConfig {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: cover;
+	height: 100vh;
+	width: 100vw;
+	z-index: 1;
+
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -155,42 +146,35 @@ h3 {
 	-ms-perspective: 1000;
 	-o-perspective: 1000;
 	perspective: 1000;
-
-    -webkit-transition: -webkit-transform 25s ease-out;
-    -moz-transition: -moz-transform 25s ease-out;
-    -ms-transition: -ms-transform 25s ease-out;
-    -o-transition: -o-transform 25s ease-out;
-    transition: transform 25s ease-out;
 }
 
-.bgConfig {
-	//.gpuAccelerated();
-	will-change: transform;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-size: cover;
-	height: 100vh;
-	width: 100vw;
-	z-index: -10;
-	@media (max-width: @screen-xs-max) { 
-		background-position: 50%;
+.contactBtn {
+	&:hover {
+
 	}
-	z-index: 1;
 }
 
 .desk {
 	background: url('../images/desk2.jpg') no-repeat;
+	@media (max-width: @screen-xs-max) { 
+		background-position: 50%;
+	}
 	.bgConfig();
 }
 
 .lamp {
 	background: url('../images/lamp.jpg') no-repeat;
+	@media (max-width: @screen-md-max) { 
+		background-position: 80%;
+	}
 	.bgConfig();
 }
 
 .coffee {
 	background: url('../images/coffee.jpg') no-repeat;
+	@media (max-width: @screen-xs-max) { 
+		background-position: 50%;
+	}
 	.bgConfig();
 }
 
