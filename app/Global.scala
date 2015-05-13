@@ -1,10 +1,12 @@
 import play.api._
 import play.api.mvc._
 import play.api.mvc.Results._
+import play.api.mvc.WithFilters
+import com.mohiva.play.htmlcompressor.HTMLCompressorFilter
 import play.filters.gzip.GzipFilter
 import scala.concurrent.Future
 
-object Global extends WithFilters(new GzipFilter) with GlobalSettings {
+object Global extends WithFilters(new GzipFilter, HTMLCompressorFilter()) with GlobalSettings {
 	
 	//private def getSubdomain (request: RequestHeader) = request.domain.replaceFirst("[\\.]?[^\\.]+[\\.][^\\.]+$", "")
 	
