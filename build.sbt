@@ -1,10 +1,18 @@
+import com.typesafe.sbt.web.SbtWeb
+import play.PlayJava
+import sbt._
+
 name := """erikasc"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
 scalaVersion := "2.11.1"
+
+lazy val root = (project in file(".")).enablePlugins(PlayScala,SbtWeb)
+
+//pipelineStages := Seq(rjs, uglify, digest)
+
+pipelineStages in Assets := Seq(uglify)
 
 libraryDependencies ++= Seq(
   filters,
@@ -22,6 +30,14 @@ libraryDependencies ++= Seq(
 LessKeys.cleancss in Assets := true
 
 LessKeys.compress in Assets := true
+
+UglifyKeys.compress in Assets := true
+
+UglifyKeys.mangle in Assets := true
+
+UglifyKeys.sourceMap in Assets := false
+
+includeFilter in uglify := GlobFilter("main.js")
 
 //excludeFilter in (Assets, LessKeys.less) := "*.less"
 

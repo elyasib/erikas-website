@@ -10,8 +10,8 @@
 	    <meta name="theme-color" content="#F45C43">
 		<meta name="description" content="Erika Sandoval Castellanos - Content creation, digital marketing and social media"/>
         <title>@frontTitle</title>
-        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.min.css")">
-        <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/erikasc.ico")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.min.css")">
+        <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.versioned("images/erikasc.ico")">
     </head>
     <body>
 	<div id="pageWrapper" class="pageWrapper">
@@ -45,10 +45,10 @@
 				@content
 		</div>
 	</div>
-    <script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
-	<script src="@routes.Assets.at("lib/jquery-ui/jquery-ui.min.js")"></script>
-    <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
-    <script src="@routes.Assets.at("javascripts/main.js")"></script>
+    <script src="@routes.Assets.versioned("lib/jquery/jquery.min.js")"></script>
+	<script src="@routes.Assets.versioned("lib/jquery-ui/jquery-ui.min.js")"></script>
+    <script src="@routes.Assets.versioned("lib/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/main.min.js")"></script>
 	<script>
 		$(document).ready(function() {
 			$(window).discrete_scroll();

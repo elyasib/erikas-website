@@ -1,12 +1,19 @@
-"use strict";
+//"use strict";
 
-var closeSideBar = undefined;
-var toggleSideBar = undefined;
-var scrollToAnch = undefined;
-var scrollToAnch1 = undefined;
-var collapseMenuBar = undefined;
-var formBehavior = undefined;
+var closeSideBar;
+var toggleSideBar;
+var scrollToAnch;
+var scrollToAnch1;
+var collapseMenuBar;
+var formBehavior;
 var $secondBox=$(document.getElementById("box2"));
+//var closeSideBar = undefined;
+//var toggleSideBar = undefined;
+//var scrollToAnch = undefined;
+//var scrollToAnch1 = undefined;
+//var collapseMenuBar = undefined;
+//var formBehavior = undefined;
+//var $secondBox=$(document.getElementById("box2"));
 
 $(document).ready(function() {
 	var $pageWrapper = $("#pageWrapper");
@@ -19,7 +26,6 @@ $(document).ready(function() {
 	var lastTarget="";
 	var scrollFinished=true;
 	var $htmlBody=$("html,body");
-	var $pageWrapper=$("#pageWrapper");
 
 	function switchClass(targetId,class1,class2) {
 		targetId.removeClass(class2);
@@ -47,10 +53,15 @@ $(document).ready(function() {
 			$htmlBody.animate({scrollTop: $currBox.offset().top},800,'easeInOutQuart',function() {
 				$currinnBox.addClass("zoomBlock").removeClass("willScroll");
 				$previnnBox.removeClass("zoomBlock");
-				currBox === 0 ? switchClass($menuBar,"toggleColorTop","toggleColorNop") : switchClass($menuBar,"toggleColorNop","toggleColorTop");
-				setTimeout(function(){scrollFinished=true;console.log("finished");},400);
+				if (currBox === 0) {
+					switchClass($menuBar,"toggleColorTop","toggleColorNop");
+				}
+				else {
+					switchClass($menuBar,"toggleColorNop","toggleColorTop");
+				}
+				setTimeout(function(){scrollFinished=true;},400);
 			});
-		}
+		};	
 		DiscreteScroll.prototype.enable = function() {
 			this.$container.on(
 				"mousewheel.discretescroll DOMMouseScroll.discretescroll touchmove.discretescroll", this.handleScroll
@@ -61,7 +72,7 @@ $(document).ready(function() {
 		};
 		DiscreteScroll.prototype.handleTStart = function(e) {
 			swipeDeltaY0 = e.originalEvent.touches[0].screenY;
-		}
+		};
 		DiscreteScroll.prototype.handleScroll = function(e) {
 			e.preventDefault();
 			if (lastTarget !== e.originalEvent.target && scrollFinished === true) { 
@@ -74,8 +85,7 @@ $(document).ready(function() {
 						lastBox = currBox;
 						currBox--;
 						console.log("preparing");
-						var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
-						$currinnBox.addClass("willScroll");
+						$(document.getElementById("innbox"+currBox.toString())).addClass("willScroll");
 						console.log("scheduling");
 						setTimeout(function(){instance.scrollToBox();},50);
 					}
@@ -89,8 +99,7 @@ $(document).ready(function() {
 						lastBox = currBox;
 						currBox++;
 						console.log("preparing");
-						var $currinnBox=$(document.getElementById("innbox"+currBox.toString()));
-						$currinnBox.addClass("willScroll");
+						$(document.getElementById("innbox"+currBox.toString())).addClass("willScroll");
 						//instance.scrollToBox();//scrollToBox(e);
 						console.log("scheduling");
 						setTimeout(function(){instance.scrollToBox();},50);
@@ -132,7 +141,7 @@ $(document).ready(function() {
 			$formOut.fadeOut("slow");
 			$formIn.fadeIn("slow");
 		}); 
-	}
+	};
 	
 	closeSideBar = function(btnClose,form1,form2) {
 		var $form1 = $(form1);
@@ -143,7 +152,7 @@ $(document).ready(function() {
 			$form1.fadeOut("slow");
 			$form2.fadeOut("slow");
 		});
-	}
+	};
 	
 	scrollToAnch1 = function(scrollBtn) {
 		scrollBtn.on("click",function(){
@@ -159,7 +168,7 @@ $(document).ready(function() {
 				switchClass($menuBar,"toggleColorNop","toggleColorTop");
 			});
 		});
-	}
+	};
 	
 	formBehavior = function() {
 		$doc.on("keypress", ".tabOnEnter" , function(e) {
@@ -171,8 +180,8 @@ $(document).ready(function() {
 				else
 					$('input[tabindex="1"]').focus();
 			}
-	        });
-	}
+		});
+	};
 	
 	
 	collapseMenuBar = function(menuBarWrapper,listWrapper) {
@@ -182,6 +191,6 @@ $(document).ready(function() {
 				$listWrapper.collapse('hide');
 			}
 		});
-	}
+	};
 });
 
