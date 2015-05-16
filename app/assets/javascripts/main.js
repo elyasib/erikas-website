@@ -1,5 +1,3 @@
-//"use strict";
-
 var closeSideBar;
 var toggleSideBar;
 var scrollToAnch;
@@ -7,25 +5,19 @@ var scrollToAnch1;
 var collapseMenuBar;
 var formBehavior;
 var $secondBox=$(document.getElementById("box2"));
-//var closeSideBar = undefined;
-//var toggleSideBar = undefined;
-//var scrollToAnch = undefined;
-//var scrollToAnch1 = undefined;
-//var collapseMenuBar = undefined;
-//var formBehavior = undefined;
-//var $secondBox=$(document.getElementById("box2"));
 
 $(document).ready(function() {
 	var $pageWrapper = $("#pageWrapper");
 	var $doc = $(document);
 	var $menuBar = $("#menuBar");
-	var $win = $(window);
 	var $body=$('body');
 	var currBox = 0;
 	var lastBox = 0;
 	var lastTarget="";
 	var scrollFinished=true;
 	var $htmlBody=$("html,body");
+	var $Box1=$(document.getElementById("box1"));
+	var $innBox1=$(document.getElementById("innbox1"));
 
 	function switchClass(targetId,class1,class2) {
 		targetId.removeClass(class2);
@@ -38,9 +30,7 @@ $(document).ready(function() {
 	;(function($) {
 		"use strict";
 		var instance;
-		var swipeDeltaX0 = 0;
 		var swipeDeltaY0 = 0;
-		var swipeDeltaX1 = 0;
 		var swipeDeltaY1 = 0;
 		function DiscreteScroll($container) {
 			this.$container = $container;	
@@ -100,7 +90,6 @@ $(document).ready(function() {
 						currBox++;
 						console.log("preparing");
 						$(document.getElementById("innbox"+currBox.toString())).addClass("willScroll");
-						//instance.scrollToBox();//scrollToBox(e);
 						console.log("scheduling");
 						setTimeout(function(){instance.scrollToBox();},50);
 					}
@@ -159,12 +148,8 @@ $(document).ready(function() {
 			currBox=1;
 			lastBox=0;
 			lastTarget="";
-			var $currBox=$(document.getElementById("box1"));
-			var $currinnBox=$(document.getElementById("innbox1"));
-			var $previnnBox=$(document.getElementById("innbox0"));
-			$body.animate({scrollTop: $("#box1").offset().top},800,'easeInOutQuart',function() {
-				$currinnBox.addClass("zoomBlock");
-				$previnnBox.removeClass("zoomBlock");
+			$body.animate({scrollTop: $Box1.offset().top},800,'easeInOutQuart',function() {
+				$innBox1.addClass("zoomBlock");
 				switchClass($menuBar,"toggleColorNop","toggleColorTop");
 			});
 		});
