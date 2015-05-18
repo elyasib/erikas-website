@@ -12,8 +12,6 @@ scalacOptions += "-feature"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala,SbtWeb)
 
-//pipelineStages := Seq(rjs, uglify, digest)
-
 libraryDependencies ++= Seq(
   filters,
   jdbc,
@@ -28,7 +26,13 @@ libraryDependencies ++= Seq(
   "com.mohiva" %% "play-html-compressor" % "0.3.1"
 )
 
-pipelineStages in Assets := Seq(uglify,filter)
+pipelineStages in Assets := Seq(concat,uglify,filter)
+
+Concat.groups := Seq(
+  "jsgrup.js" -> group(Seq("lib/jquery/jquery.min.js", "lib/jquery-ui/jquery-ui.min.js", "lib/bootstrap/js/bootstrap.min.js", "javascripts/main.js"))
+)
+
+Concat.parentDir := "javascripts/"
 
 LessKeys.cleancss in Assets := true
 
@@ -40,11 +44,11 @@ UglifyKeys.mangle in Assets := true
 
 UglifyKeys.sourceMap in Assets := false
 
-includeFilter in uglify := GlobFilter("main.js")
+includeFilter in uglify := GlobFilter("jsgrup.js")
 
 includeFilter in (Assets,LessKeys.less) := "main.less"
 
-includeFilter in filter :=  "*.js"
+includeFilter in filter :=  "*.map"
 
-excludeFilter in filter := "*.min.js"
+//excludeFilter in filter := "*.min.js"
 
