@@ -18,7 +18,6 @@ libraryDependencies ++= Seq(
   anorm,
   cache,
   ws,
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
   "org.webjars" % "bootstrap" % "3.3.1",
   "org.webjars" % "jquery" % "2.1.3" intransitive(),
   "org.webjars" % "jquery-ui" % "1.11.4",
@@ -46,9 +45,9 @@ UglifyKeys.sourceMap in Assets := false
 
 includeFilter in uglify := GlobFilter("jsgrup.js")
 
+//includeFilter in uglify := GlobFilter("main.js")
+
 includeFilter in (Assets,LessKeys.less) := "main.less"
 
 includeFilter in filter :=  "*.map"
-
-//excludeFilter in filter := "*.min.js"
 
